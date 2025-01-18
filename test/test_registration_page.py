@@ -37,7 +37,7 @@ class TestRegisterUser:
         self.registration_page.set_password("QAtest123!")
         self.registration_page.set_confirm_password("QAtest123!")
         time.sleep(1)
-        assert not self.registration_page.is_signup_button_enabled(), "El botón debería estar deshabilitado"
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
 
     # caso 3 valida campo email
     def test_email_validation(self, setup):
@@ -48,7 +48,7 @@ class TestRegisterUser:
         self.registration_page.set_password("QAtest123!")
         self.registration_page.set_confirm_password("QAtest123!")
         time.sleep(1)
-        assert not self.registration_page.is_signup_button_enabled(), "El botón debería estar deshabilitado"
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
 
     # caso 4 valida campo password
     def test_password_validation(self, setup):
@@ -59,7 +59,7 @@ class TestRegisterUser:
         self.registration_page.set_password("")
         self.registration_page.set_confirm_password("QAtest123!")
         time.sleep(1)
-        assert not self.registration_page.is_signup_button_enabled(), "El botón debería estar deshabilitado"
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
 
     # caso 5 valida campo repeat password
     def test_repeat_password_validation(self, setup):
@@ -72,7 +72,7 @@ class TestRegisterUser:
         time.sleep(2)
         assert self.registration_page.is_alert_active() == "Passwords do not match", '** ERROR ** No valida que las contrasenas coincidan'
         time.sleep(1)
-        assert not self.registration_page.is_signup_button_enabled(), "El botón debería estar deshabilitado"
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
 
     # caso 6 valida campos obligatorios
     def test_fields_validation(self, setup):
@@ -83,4 +83,15 @@ class TestRegisterUser:
         self.registration_page.set_password("")
         self.registration_page.set_confirm_password("")
         time.sleep(1)
-        assert not self.registration_page.is_signup_button_enabled(), "El botón debería estar deshabilitado"
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
+
+    # caso 7 valida caracter especial en el password
+    def test_password_content_validation(self, setup):
+        self.registration_page.form_register()
+        time.sleep(2)
+        self.registration_page.register_name("Prueba QA2")
+        self.registration_page.register_email("pruebaQA2@yopmail.com")
+        self.registration_page.set_password("QAtest12")
+        self.registration_page.set_confirm_password("QAtest12")
+        time.sleep(1)
+        assert not self.registration_page.is_signup_button_enabled(), "** ERROR **, El botón debería estar deshabilitado"
