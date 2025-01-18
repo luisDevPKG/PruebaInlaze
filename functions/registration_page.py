@@ -45,8 +45,6 @@ class RegistrationPage:
     def is_register_successful(self):
         alert_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(self.alert_successful))
         return alert_element.text  # Devuelve el contenido de la alerta
-    # (//div[contains(.,'Successful registration!')])[5]
-    # https://test-qa.inlaze.com/auth/sign-in
 
     def is_signup_button_enabled(self):
         # Localizar el botón
